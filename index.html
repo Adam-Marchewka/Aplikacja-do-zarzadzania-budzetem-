@@ -10,12 +10,26 @@
 <body>
     <div class="container my-5 py-5 px-5">
         <!-- Navbar -->
-        <div>
+        <div class="border-bottom">
             <p class="text-center h3">Aplikacja do zarządzania budżetem</p>
             <p class="text-center h5">Autor: Adam Marchewka 3TP/FOT</p>
+        </div><br>
+        <!-- Chart -->
+        <div class="chart">
+            <div class="row">
+                <div class="col" style="width: 50%; height: 50%;">
+                    <h3>Wydatki:</h3>
+                    <canvas id="expenses-chart"></canvas>
+                </div><br>
+                <div class="col" style="width: 50%; height: 50%;">
+                    <h3>Dochód:</h3>
+                    <canvas id="income-chart"></canvas>
+                </div>
+            </div>
         </div>
     </div>
     <script src="/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
     <script src="index.js"></script>
 </body>
