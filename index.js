@@ -1,72 +1,160 @@
-const expensesChart = document.getElementById('expenses-chart');
-const incomeChart = document.getElementById('income-chart');
+// WYDATKI - LocalStorage
 
-new Chart(incomeChart, {
-    type: 'doughnut',
-    data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-            '#4CAF50', 
-            '#8BC34A', 
-            '#2196F3', 
-            '#03A9F4', 
-            '#FFC107', 
-            '#FF9800'
-        ],
-        hoverBackgroundColor: [
-            '#43A047', 
-            '#7CB342', 
-            '#1E88E5', 
-            '#039BE5', 
-            '#FFB300', 
-            '#FB8C00'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('form-data');
+    // const list = document.getElementById('data-list');
+
+    // Pobieranie danych z localStorage
+    function getData() {
+        return JSON.parse(localStorage.getItem('Wydatki')) || [];
     }
+
+    // Zapisywanie danych w localStorage
+    function setData(data) {
+        localStorage.setItem('Wydatki', JSON.stringify(data));
+    }
+
+    // Dodawanie danych z formularza
+    function addData(event) {
+        event.preventDefault(); 
+        const amountExpenses = document.getElementById('amountExpenses1').value;
+        const typeExpenses = document.getElementById('type2').value;
+        const colorExpenses = document.getElementById('color2').value;
+
+        const sumExpenses = parseFloat(amountExpenses) || 0;
+
+        const newData = { sumExpenses, typeExpenses, colorExpenses };
+        const data = getData();
+        data.push(newData);
+        setData(data);
+
+        renderData(); 
+        if (form){ 
+            form.reset()
+        }
+    }
+
+    // Renderowanie danych na liście
+    function renderData() {
+
+        const data = getData();
+
+        const type = data.map(item => item.typeExpenses);
+        const sum = data.map(item => item.sumExpenses);
+        const color = data.map(item => item.colorExpenses || '#9E9E9E');
+
+        const ctx = document.getElementById("expenses-chart").getContext('2d');
+
+        // Zniszczenie poprzedniego wykresu
+        if (window.myChart instanceof Chart){
+            window.myChart.destroy();
+        }
+
+        window.myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+              labels: type,
+              datasets: [{
+                data: sum,
+                backgroundColor: color,
+                borderWidth: 1
+              }]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: {
+                    position: 'top'
+                }
+              }
+            }
+        });
+        
+    }
+
+    if (form) {
+        form.addEventListener('submit', addData);
+    }
+
+    renderData();
 });
 
-new Chart(expensesChart, {
-    type: 'doughnut',
-    data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-            '#F44336',
-            '#B71C1C',
-            '#FF9800',
-            '#FF5722',
-            '#795548',
-            '#5D4037',
-            '#9E9E9E'
-          ],
-          hoverBackgroundColor: [
-            '#E53935',
-            '#D32F2F',
-            '#FB8C00',
-            '#F4511E',
-            '#6D4C41',
-            '#4E342E',
-            '#757575'
-          ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
+// DOCHÓD
+
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('form-data1');
+
+    // Pobieranie danych z localStorage
+    function getData() {
+        return JSON.parse(localStorage.getItem('Dochod')) || [];
     }
+
+    // Zapisywanie danych w localStorage
+    function setData(data) {
+        localStorage.setItem('Dochod', JSON.stringify(data));
+    }
+
+    // Dodawanie danych z formularza
+    function addData(event) {
+        event.preventDefault(); 
+        const amountExpenses = document.getElementById('amountIncome1').value;
+        const typeExpenses = document.getElementById('type1').value;
+        const colorExpenses = document.getElementById('color1').value;
+
+        const sumExpenses = parseFloat(amountExpenses) || 0;
+
+        const newData = { sumExpenses, typeExpenses, colorExpenses };
+        const data = getData();
+        data.push(newData);
+        setData(data);
+
+        renderData(); 
+        if (form){ 
+            form.reset()
+        }
+    }
+
+    // Renderowanie danych na liście
+    function renderData() {
+
+        const data = getData();
+
+        const type = data.map(item => item.typeExpenses);
+        const sum = data.map(item => item.sumExpenses);
+        const color = data.map(item => item.colorExpenses || '#9E9E9E');
+
+        const ctx = document.getElementById("income-chart").getContext('2d');
+
+        // Zniszczenie poprzedniego wykresu
+        if (window.myChart instanceof Chart){
+            window.myChart.destroy();
+        }
+
+        window.myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+              labels: type,
+              datasets: [{
+                data: sum,
+                backgroundColor: color,
+                borderWidth: 1
+              }]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: {
+                    position: 'top'
+                }
+              }
+            }
+        });
+        
+    }
+
+    if (form) {
+        form.addEventListener('submit', addData);
+    }
+
+    renderData();
 });
