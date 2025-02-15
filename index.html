@@ -20,10 +20,91 @@
                 <div class="col" style="width: 50%; height: 50%;">
                     <h3>Wydatki:</h3>
                     <canvas id="expenses-chart"></canvas>
+                    <h4 id="sumExpenses" class="text-center"></h4>
                 </div><br>
                 <div class="col" style="width: 50%; height: 50%;">
                     <h3>Dochód:</h3>
                     <canvas id="income-chart"></canvas>
+                    <h4 id="sumIncome" class="text-center"></h4>
+                </div>
+            </div>
+        </div><br>
+        <!-- Form -->
+        <div id="form-card">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="card-header">
+                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#formExpensesChart" aria-expanded="false" aria-controls="formExpensesChart">Dodaj Wydatek</a>
+                    </p>
+                    <div class="collapse" id="formExpensesChart">
+                        <div class="card card-body">
+                            <form>
+                                <div id="amountExpensesDiv1" class="mb-3">
+                                    <label for="amountExpenses1" class="form-label">Kwota</label>
+                                    <input type="number" class="form-control" id="amountExpenses1">
+                                </div>
+                                <div id="typeColorDiv1" class="mb-3">
+                                    <label for="type2" class="form-label">Typ</label>
+                                    <select id="type2" class="form-select mb-1">
+                                        <option value="Zdrowie">Zdrowie</option>
+                                        <option value="Prezenty">Prezenty</option>
+                                        <option value="Wypoczynek">Wypoczynek</option>
+                                        <option value="Dom">Dom</option>
+                                        <option value="Edukacja">Edukacja</option>
+                                        <option value="Artykuły-Spożywcze">Artykuły Spożywcze</option>
+                                        <option value="Inne">Inne</option>
+                                    </select>
+                                    <label for="color2" class="form-label">Kolor</label>
+                                    <select id="color2" class="form-select">
+                                        <option value="#F44336">Czerwony</option>
+                                        <option value="#B71C1C">Bordowy</option>
+                                        <option value="#FF9800">Pomarańczowy</option>
+                                        <option value="#FF5722">Ciemnopomarańczowy</option>
+                                        <option value="#795548">Brązowy</option>
+                                        <option value="#5D4037">Ciemny Brązowy</option>
+                                        <option value="#9E9E9E">Szary</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Dodaj</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <p class="card-header">
+                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#formIncomeChart" aria-expanded="false" aria-controls="formIncomeChart">Dodaj Dochód</a>
+                    </p>
+                    <div class="collapse" id="formIncomeChart">
+                        <div class="card card-body">
+                            <form>
+                                <div id="amountIncomeDiv1" class="mb-3">
+                                    <label for="amountIncome1" class="form-label">Kwota</label>
+                                    <input type="number" class="form-control" id="amountIncome1">
+                                </div>
+                                <div id="typeColorDiv2" class="mb-3">
+                                    <label for="type1" class="form-label">Typ</label>
+                                    <select id="type1" class="form-select mb-1">
+                                        <option value="Wypłata">Wypłata</option>
+                                        <option value="Prezent">Prezent</option>
+                                        <option value="Zwrot">Zwrot</option>
+                                        <option value="Kieszonkowe">Kieszonkowe</option>
+                                        <option value="Procent">Procent</option>
+                                        <option value="Inne">Inne</option>
+                                    </select>
+                                    <label for="color1" class="form-label">Kolor</label>
+                                    <select id="color1" class="form-select">
+                                        <option value="#4CAFS0">Zielony</option>
+                                        <option value="8BC34A">Jasnozielony</option>
+                                        <option value="#2196F3">Niebieski</option>
+                                        <option value="#03A9F4">Jasnoniebieski</option>
+                                        <option value="#FFC107">Żółty</option>
+                                        <option value="#FF9800">Pomarańczowy</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Dodaj</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
